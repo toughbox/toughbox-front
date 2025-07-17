@@ -1,0 +1,279 @@
+import React, { useState } from 'react';
+import {
+  Box,
+  Paper,
+  Typography,
+  TextField,
+  Button,
+  Alert,
+  Card,
+  CardContent,
+  Avatar,
+  Divider,
+  List,
+  ListItem,
+  ListItemText,
+  ListItemAvatar,
+  Chip,
+  IconButton,
+} from '@mui/material';
+import {
+  PersonAdd as PersonAddIcon,
+  Visibility,
+  VisibilityOff,
+  Person as PersonIcon,
+  Email as EmailIcon,
+  Lock as LockIcon,
+  Delete as DeleteIcon,
+} from '@mui/icons-material';
+
+// 가상의 사용자 데이터베이스
+interface User {
+  id: string;
+  userId: string;
+  password: string;
+  registeredAt: string;
+}
+
+const Authentication: React.FC = () => {
+  const [userId, setUserId] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [alert, setAlert] = useState<{ type: 'success' | 'error' | 'info'; message: string } | null>(null);
+  const [users, setUsers] = useState<User[]>([
+    { id: '1', userId: 'admin', password: '1234', registeredAt: '2024-01-15' },
+    { id: '2', userId: 'user1', password: 'password', registeredAt: '2024-01-16' },
+  ]);
+
+  const validateForm = () => {
+    if (!userId.trim()) {
+      setAlert({ type: 'error', message: 'ID를 입력해주세요.' });
+      return false;
+    }
+    if (userId.length < 4) {
+      setAlert({ type: 'error', message: 'ID는 4자 이상이어야 합니다.' });
+      return false;
+    }
+    if (!password.trim()) {
+      setAlert({ type: 'error', message: '비밀번호를 입력해주세요.' });
+      return false;
+    }
+    if (password.length < 4) {
+      setAlert({ type: 'error', message: '비밀번호는 4자 이상이어야 합니다.' });
+      return false;
+    }
+    if (password !== confirmPassword) {
+      setAlert({ type: 'error', message: '비밀번호가 일치하지 않습니다.' });
+      return false;
+    }
+    if (users.some(user => user.userId === userId)) {
+      setAlert({ type: 'error', message: '이미 존재하는 ID입니다.' });
+      return false;
+    }
+    return true;
+  };
+
+  const handleRegister = () => {
+    if (!validateForm()) return;
+
+    const newUser: User = {
+      id: Date.now().toString(),
+      userId,
+      password,
+      registeredAt: new Date().toISOString().split('T')[0],
+    };
+
+    setUsers(prev => [...prev, newUser]);
+    setAlert({ type: 'success', message: `회원가입이 완료되었습니다! (ID: ${userId})` });
+    
+    // 폼 초기화
+    setUserId('');
+    setPassword('');
+    setConfirmPassword('');
+  };
+
+  const handleDeleteUser = (userIdToDelete: string) => {
+    setUsers(prev => prev.filter(user => user.id !== userIdToDelete));
+    setAlert({ type: 'info', message: '사용자가 삭제되었습니다.' });
+  };
+
+  const clearAlert = () => {
+    setAlert(null);
+  };
+
+  React.useEffect(() => {
+    if (alert) {
+      const timer = setTimeout(clearAlert, 5000);
+      return () => clearTimeout(timer);
+    }
+  }, [alert]);
+
+  return (
+    <Box sx={{ p: 3 }}>
+      <Typography variant="h4" gutterBottom sx={{ mb: 4, fontWeight: 500 }}>
+        사용자 관리
+      </Typography>
+
+      <Box sx={{ display: 'flex', gap: 3, flexWrap: 'wrap' }}>
+        {/* 회원가입 폼 */}
+        <Box sx={{ flex: '1 1 400px', minWidth: '400px' }}>
+          <Card>
+            <CardContent sx={{ p: 4 }}>
+              <Box sx={{ display: 'flex', alignItems: 'center', mb: 3 }}>
+                <Avatar sx={{ bgcolor: 'primary.main', mr: 2 }}>
+                  <PersonAddIcon />
+                </Avatar>
+                <Typography variant="h5" component="h2">
+                  새 사용자 등록
+                </Typography>
+              </Box>
+
+              {alert && (
+                <Alert 
+                  severity={alert.type} 
+                  onClose={clearAlert}
+                  sx={{ mb: 3 }}
+                >
+                  {alert.message}
+                </Alert>
+              )}
+
+              <Box component="form" sx={{ mt: 2 }}>
+                <TextField
+                  fullWidth
+                  label="사용자 ID"
+                  value={userId}
+                  onChange={(e) => setUserId(e.target.value)}
+                  margin="normal"
+                  required
+                  InputProps={{
+                    startAdornment: <PersonIcon sx={{ mr: 1, color: 'action.active' }} />,
+                  }}
+                  helperText="4자 이상의 고유한 ID를 입력하세요"
+                />
+
+                <TextField
+                  fullWidth
+                  label="비밀번호"
+                  type={showPassword ? 'text' : 'password'}
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  margin="normal"
+                  required
+                  InputProps={{
+                    startAdornment: <LockIcon sx={{ mr: 1, color: 'action.active' }} />,
+                    endAdornment: (
+                      <IconButton
+                        aria-label="toggle password visibility"
+                        onClick={() => setShowPassword(!showPassword)}
+                        edge="end"
+                      >
+                        {showPassword ? <VisibilityOff /> : <Visibility />}
+                      </IconButton>
+                    ),
+                  }}
+                  helperText="4자 이상의 비밀번호를 입력하세요"
+                />
+
+                <TextField
+                  fullWidth
+                  label="비밀번호 확인"
+                  type={showConfirmPassword ? 'text' : 'password'}
+                  value={confirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                  margin="normal"
+                  required
+                  InputProps={{
+                    startAdornment: <LockIcon sx={{ mr: 1, color: 'action.active' }} />,
+                    endAdornment: (
+                      <IconButton
+                        aria-label="toggle confirm password visibility"
+                        onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                        edge="end"
+                      >
+                        {showConfirmPassword ? <VisibilityOff /> : <Visibility />}
+                      </IconButton>
+                    ),
+                  }}
+                  helperText="위에서 입력한 비밀번호를 다시 입력하세요"
+                />
+
+                <Button
+                  fullWidth
+                  variant="contained"
+                  onClick={handleRegister}
+                  sx={{ mt: 3, mb: 2, py: 1.5 }}
+                  size="large"
+                >
+                  회원가입
+                </Button>
+              </Box>
+            </CardContent>
+          </Card>
+        </Box>
+
+        {/* 등록된 사용자 목록 */}
+        <Box sx={{ flex: '1 1 400px', minWidth: '400px' }}>
+          <Paper sx={{ p: 3 }}>
+            <Typography variant="h6" gutterBottom sx={{ mb: 2 }}>
+              등록된 사용자 목록 ({users.length}명)
+            </Typography>
+            <Divider sx={{ mb: 2 }} />
+            
+            <List>
+              {users.map((user, index) => (
+                <ListItem
+                  key={user.id}
+                  secondaryAction={
+                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                      <Chip 
+                        label={`가입일: ${user.registeredAt}`} 
+                        size="small" 
+                        variant="outlined"
+                      />
+                      <IconButton 
+                        edge="end" 
+                        aria-label="delete"
+                        onClick={() => handleDeleteUser(user.id)}
+                        color="error"
+                      >
+                        <DeleteIcon />
+                      </IconButton>
+                    </Box>
+                  }
+                  sx={{ 
+                    mb: 1, 
+                    border: '1px solid #e0e0e0', 
+                    borderRadius: 1,
+                    '&:hover': { bgcolor: 'action.hover' }
+                  }}
+                >
+                  <ListItemAvatar>
+                    <Avatar sx={{ bgcolor: 'secondary.main' }}>
+                      {user.userId[0].toUpperCase()}
+                    </Avatar>
+                  </ListItemAvatar>
+                  <ListItemText
+                    primary={user.userId}
+                    secondary={`비밀번호: ${'*'.repeat(user.password.length)} (${user.password.length}자)`}
+                  />
+                </ListItem>
+              ))}
+            </List>
+
+            {users.length === 0 && (
+              <Box sx={{ textAlign: 'center', py: 4, color: 'text.secondary' }}>
+                <PersonIcon sx={{ fontSize: 48, mb: 2 }} />
+                <Typography>등록된 사용자가 없습니다.</Typography>
+              </Box>
+            )}
+          </Paper>
+        </Box>
+      </Box>
+    </Box>
+  );
+};
+
+export default Authentication; 
