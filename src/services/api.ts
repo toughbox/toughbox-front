@@ -1,7 +1,6 @@
 import axios from 'axios';
 
-//const API_BASE_URL = 'http://localhost:8080';
-const API_BASE_URL = import.meta.env.DEV ? '/api' : 'http://localhost:8080';
+const API_BASE_URL = '/api';
 
 const apiClient = axios.create({
   baseURL: API_BASE_URL,
@@ -31,11 +30,11 @@ apiClient.interceptors.response.use(
 
 export const authAPI = {
   register: (userId: string, password: string) => 
-    apiClient.post('/auth/users', { userId, password }),
+    apiClient.post('/users', { userId, password }),
   login: (userId: string, password: string) => 
-    apiClient.post('/auth/login', { userId, password }),
+    apiClient.post('/login', { userId, password }),
   getUsers: () => 
-    apiClient.get('/auth/users'),
+    apiClient.get('/users'),
 };
 
 export default apiClient; 

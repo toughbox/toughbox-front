@@ -5,6 +5,9 @@ import Navigator from './components/Navigator';
 import Header from './components/Header';
 import Content from './components/Content';
 import Authentication from './components/Authentication';
+import Login from './components/Login';
+import Register from './components/Register';
+import Welcome from './components/Welcome';
 
 const drawerWidth = 256;
 
@@ -17,7 +20,6 @@ function App() {
   useEffect(() => {
     const path = location.pathname;
     switch (path) {
-      case '/':
       case '/dashboard':
         setSelectedMenu('Dashboard');
         break;
@@ -57,6 +59,19 @@ function App() {
     setMobileOpen(!mobileOpen);
   };
 
+  // 로그인/회원가입/환영 페이지에서는 네비게이션과 헤더를 숨김
+  const isAuthPage = ['/login', '/register', '/'].includes(location.pathname);
+
+  if (isAuthPage) {
+    return (
+      <Routes>
+        <Route path="/" element={<Welcome />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+      </Routes>
+    );
+  }
+
   return (
     <Box sx={{ display: 'flex', minHeight: '100vh' }}>
       <Box
@@ -80,7 +95,6 @@ function App() {
           }}
         >
           <Routes>
-            <Route path="/" element={<Content />} />
             <Route path="/dashboard" element={<Content />} />
             <Route path="/authentication" element={<Authentication />} />
             <Route path="/analytics" element={<div>Analytics 페이지 (준비 중)</div>} />
