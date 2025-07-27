@@ -53,11 +53,7 @@ const Login: React.FC = () => {
       const response = await authAPI.login(userId, password);
       
       if (response.status === 200 || response.status === 201) {
-        // 로그인 성공 시 토큰 저장 (만약 서버에서 토큰을 제공한다면)
-        if (response.data.token) {
-          localStorage.setItem('token', response.data.token);
-        }
-        
+        // 토큰은 이미 authAPI.login에서 자동 저장됨
         setAlert({ type: 'success', message: '로그인에 성공했습니다!' });
         
         // 성공 후 대시보드로 이동

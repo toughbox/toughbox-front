@@ -19,7 +19,9 @@ import {
   Home as HomeIcon,
   ShoppingCart as ShoppingCartIcon,
   Storage as StorageIcon,
+  Logout as LogoutIcon,
 } from '@mui/icons-material';
+import { authAPI } from '../services/api';
 
 const drawerWidth = 256;
 
@@ -56,6 +58,17 @@ const Navigator: React.FC<NavigatorProps> = ({ PaperProps, selectedMenu = 'Dashb
 
   const handleMenuClick = (path: string) => {
     navigate(path);
+  };
+
+  const handleLogout = async () => {
+    try {
+      await authAPI.logout();
+      navigate('/');
+    } catch (error) {
+      console.error('로그아웃 에러:', error);
+      // 에러가 발생해도 로컬 토큰은 삭제되므로 홈으로 이동
+      navigate('/');
+    }
   };
 
   return (
@@ -104,6 +117,31 @@ const Navigator: React.FC<NavigatorProps> = ({ PaperProps, selectedMenu = 'Dashb
             <Divider sx={{ mt: 2, bgcolor: 'rgba(255,255,255,.15)' }} />
           </Box>
         ))}
+        
+        {/* 로그아웃 버튼 */}
+        <Box sx={{ mt: 'auto', p: 2 }}>
+          <ListItem disablePadding>
+            <ListItemButton
+              onClick={handleLogout}
+              sx={{
+                py: 0,
+                minHeight: 32,
+                color: 'rgba(255,255,255,.8)',
+                '&:hover': {
+                  bgcolor: 'rgba(255,255,255,.08)',
+                },
+              }}
+            >
+              <ListItemIcon sx={{ color: 'inherit' }}>
+                <LogoutIcon />
+              </ListItemIcon>
+              <ListItemText
+                primary="로그아웃"
+                primaryTypographyProps={{ fontSize: 14, fontWeight: 'medium' }}
+              />
+            </ListItemButton>
+          </ListItem>
+        </Box>
       </List>
     </Drawer>
   );
