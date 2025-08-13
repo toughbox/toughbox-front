@@ -80,4 +80,4 @@ jobs:
               ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
             
             # Clean up old images
-            docker image prune -f
+            docker image prune -f 
