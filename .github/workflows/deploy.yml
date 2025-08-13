@@ -76,8 +76,8 @@ jobs:
             docker run -d \
               --name toughbox-front \
               --restart unless-stopped \
-              -p 3000:80 \
+              -p 80:80 \
               ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
             
             # Clean up old images
-            docker image prune -f  
+            docker image prune -f
