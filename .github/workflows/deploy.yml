@@ -72,11 +72,11 @@ jobs:
             docker stop toughbox-front || true
             docker rm toughbox-front || true
             
-            # Run new container on port 3000
+            # Run new container on port 80
             docker run -d \
               --name toughbox-front \
               --restart unless-stopped \
-              -p 3000:80 \
+              -p 80:80 \
               ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
             
             # Clean up old images
