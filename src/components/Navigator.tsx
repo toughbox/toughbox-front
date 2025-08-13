@@ -17,13 +17,10 @@ import {
   BarChart as BarChartIcon,
   Settings as SettingsIcon,
   Home as HomeIcon,
-  ShoppingCart as ShoppingCartIcon,
   Storage as StorageIcon,
   Logout as LogoutIcon,
 } from '@mui/icons-material';
 import { authAPI } from '../services/api';
-
-const drawerWidth = 256;
 
 const categories = [
   {
@@ -66,7 +63,6 @@ const Navigator: React.FC<NavigatorProps> = ({ PaperProps, selectedMenu = 'Dashb
       navigate('/');
     } catch (error) {
       console.error('로그아웃 에러:', error);
-      // 에러가 발생해도 로컬 토큰은 삭제되므로 홈으로 이동
       navigate('/');
     }
   };

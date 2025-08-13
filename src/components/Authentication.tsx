@@ -23,7 +23,6 @@ import {
   Visibility,
   VisibilityOff,
   Person as PersonIcon,
-  Email as EmailIcon,
   Lock as LockIcon,
   Delete as DeleteIcon,
 } from '@mui/icons-material';
@@ -261,7 +260,7 @@ const Authentication: React.FC = () => {
             <Divider sx={{ mb: 2 }} />
             
             <List>
-              {users.map((user, index) => (
+              {users.map((user) => (
                 <ListItem
                   key={user.id}
                   secondaryAction={

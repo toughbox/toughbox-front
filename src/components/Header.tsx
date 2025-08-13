@@ -11,7 +11,6 @@ import {
   Box,
 } from '@mui/material';
 import {
-  Menu as MenuIcon,
   Search as SearchIcon,
   Notifications as NotificationsIcon,
   Help as HelpIcon,
@@ -62,7 +61,7 @@ const getMenuTabs = (menuId: string) => {
   }
 };
 
-const Header: React.FC<HeaderProps> = ({ onDrawerToggle, selectedMenu = 'Dashboard' }) => {
+const Header: React.FC<HeaderProps> = ({ selectedMenu = 'Dashboard' }) => {
   const menuTitle = getMenuTitle(selectedMenu);
   const menuTabs = getMenuTabs(selectedMenu);
 
