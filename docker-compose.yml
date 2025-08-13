@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  toughbox-front:
+    image: ghcr.io/toughbox/toughbox-front:latest
+    container_name: toughbox-front
+    ports:
+      - "8090:8090"
+    restart: unless-stopped
+    networks:
+      - toughbox-network
+
+networks:
+  toughbox-network:
+    driver: bridge

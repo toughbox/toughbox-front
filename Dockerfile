@@ -22,7 +22,9 @@ FROM nginx:alpine
 COPY --from=builder /app/dist /usr/share/nginx/html
 
 # Copy nginx configuration
-COPY nginx.conf /etc/nginx/conf.d/default.conf
+# 개발용: COPY nginx.conf /etc/nginx/conf.d/default.conf
+# 운영용: COPY nginx.prod.conf /etc/nginx/conf.d/default.conf
+COPY nginx.prod.conf /etc/nginx/conf.d/default.conf
 
 # Expose port
 EXPOSE 8090
