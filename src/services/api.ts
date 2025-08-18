@@ -177,26 +177,28 @@ export const authAPI = {
     
     console.log('로그인 응답:', response.data);
     
-    // 로그인 성공 시 토큰 저장
+    // 로그인 성공 시에만 토큰 저장
     if (response.data.accessToken) {
       console.log('accessToken 저장:', response.data.accessToken);
       TokenManager.setToken(response.data.accessToken);
+      
+      if (response.data.refreshToken) {
+        console.log('refreshToken 저장:', response.data.refreshToken);
+        TokenManager.setRefreshToken(response.data.refreshToken);
+      } else {
+        console.log('응답에 refreshToken이 없음');
+      }
+      
+      if (response.data.user) {
+        console.log('user 정보 저장:', response.data.user);
+        TokenManager.setUser(response.data.user);
+      } else {
+        console.log('응답에 user 정보가 없음');
+      }
     } else {
-      console.log('응답에 accessToken이 없음');
-    }
-    
-    if (response.data.refreshToken) {
-      console.log('refreshToken 저장:', response.data.refreshToken);
-      TokenManager.setRefreshToken(response.data.refreshToken);
-    } else {
-      console.log('응답에 refreshToken이 없음');
-    }
-    
-    if (response.data.user) {
-      console.log('user 정보 저장:', response.data.user);
-      TokenManager.setUser(response.data.user);
-    } else {
-      console.log('응답에 user 정보가 없음');
+      console.log('응답에 accessToken이 없음 - 로그인 실패');
+      // 토큰이 없으면 로그인 실패로 처리
+      throw new Error('로그인에 실패했습니다. 아이디 또는 비밀번호를 확인해주세요.');
     }
     
     return response;

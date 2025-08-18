@@ -51,8 +51,9 @@ const Login: React.FC = () => {
     try {
       const response = await authAPI.login(userId, password);
       
-      if (response.status === 200 || response.status === 201) {
-        // 토큰은 이미 authAPI.login에서 자동 저장됨
+      // 로그인 성공 여부를 응답 데이터로 판단
+      if (response.data && response.data.accessToken) {
+        // 토큰이 있으면 로그인 성공
         setAlert({ type: 'success', message: '로그인에 성공했습니다!' });
         
         // 성공 후 대시보드로 이동
@@ -60,14 +61,25 @@ const Login: React.FC = () => {
           navigate('/dashboard');
         }, 1500);
       } else {
-        setAlert({ type: 'error', message: '로그인에 실패했습니다.' });
+        // 토큰이 없으면 로그인 실패
+        setAlert({ type: 'error', message: '아이디 또는 비밀번호가 올바르지 않습니다.' });
       }
     } catch (error: any) {
       console.error('Login error:', error);
       
       if (error.response) {
-        const errorMessage = error.response.data?.message || error.response.data?.error || '로그인에 실패했습니다.';
-        setAlert({ type: 'error', message: errorMessage });
+        // 서버에서 에러 응답이 온 경우
+        if (error.response.status === 401) {
+          setAlert({ type: 'error', message: '아이디 또는 비밀번호가 올바르지 않습니다.' });
+        } else if (error.response.status === 400) {
+          const errorMessage = error.response.data?.message || '잘못된 요청입니다. 입력 정보를 확인해주세요.';
+          setAlert({ type: 'error', message: errorMessage });
+        } else if (error.response.status === 500) {
+          setAlert({ type: 'error', message: '서버 오류가 발생했습니다. 잠시 후 다시 시도해주세요.' });
+        } else {
+          const errorMessage = error.response.data?.message || error.response.data?.error || '로그인에 실패했습니다.';
+          setAlert({ type: 'error', message: errorMessage });
+        }
       } else if (error.request) {
         setAlert({ type: 'error', message: '서버에 연결할 수 없습니다. 네트워크 연결을 확인해주세요.' });
       } else {
