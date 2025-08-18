@@ -198,7 +198,7 @@ export const authAPI = {
     } else {
       console.log('응답에 accessToken이 없음 - 로그인 실패');
       // 토큰이 없으면 로그인 실패로 처리
-      throw new Error('로그인에 실패했습니다. 아이디 또는 비밀번호를 확인해주세요.');
+      //throw new Error('로그인에 실패했습니다. 아이디 또는 비밀번호를 확인해주세요.');
     }
     
     return response;
