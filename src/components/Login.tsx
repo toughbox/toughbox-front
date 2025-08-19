@@ -56,9 +56,9 @@ const Login: React.FC = () => {
         // 토큰이 있으면 로그인 성공
         setAlert({ type: 'success', message: '로그인에 성공했습니다!' });
         
-        // 성공 후 대시보드로 이동
+        // 성공 후 홈으로 이동
         setTimeout(() => {
-          navigate('/dashboard');
+          navigate('/home');
         }, 1500);
       } else {
         // 토큰이 없으면 로그인 실패
@@ -126,12 +126,15 @@ const Login: React.FC = () => {
             </Typography>
           </Box>
 
-          <Box sx={{ display: 'flex', alignItems: 'center', mb: 3, mt: 2 }}>
-            <Avatar sx={{ bgcolor: 'primary.main', mr: 2 }}>
-              <LoginIcon />
+          <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', mb: 3, mt: 2 }}>
+            <Avatar sx={{ bgcolor: 'primary.main', width: 56, height: 56, mb: 2 }}>
+              <LoginIcon sx={{ fontSize: 28 }} />
             </Avatar>
-            <Typography variant="h4" component="h1">
-              로그인
+            <Typography variant="h4" component="h1" sx={{ fontWeight: 600 }}>
+              포트폴리오 로그인
+            </Typography>
+            <Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>
+              개발자 포트폴리오에 접근하기 위해 로그인하세요
             </Typography>
           </Box>
 

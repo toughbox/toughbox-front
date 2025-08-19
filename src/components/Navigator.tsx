@@ -12,35 +12,31 @@ import {
   Box,
 } from '@mui/material';
 import {
-  Dashboard as DashboardIcon,
-  People as PeopleIcon,
-  BarChart as BarChartIcon,
-  Settings as SettingsIcon,
   Home as HomeIcon,
-  Storage as StorageIcon,
+  Person as PersonIcon,
+  Work as WorkIcon,
+  ContactMail as ContactIcon,
+  Article as ArticleIcon,
+  Description as ResumeIcon,
+  People as PeopleIcon,
   Logout as LogoutIcon,
 } from '@mui/icons-material';
 import { authAPI } from '../services/api';
 
 const categories = [
   {
-    id: 'Develop',
+    id: 'Portfolio',
     children: [
-      { id: 'Dashboard', icon: <DashboardIcon />, path: '/dashboard' },
-      { id: 'Analytics', icon: <BarChartIcon />, path: '/analytics' },
-      { id: 'Performance', icon: <HomeIcon />, path: '/performance' },
-      { id: 'Test Lab', icon: <StorageIcon />, path: '/test-lab' },
+      { id: 'Home', icon: <HomeIcon />, path: '/home' },
+      { id: 'About Me', icon: <PersonIcon />, path: '/about' },
+      { id: 'Projects', icon: <WorkIcon />, path: '/projects' },
+      { id: 'Contact', icon: <ContactIcon />, path: '/contact' },
     ],
   },
   {
-    id: 'Quality',
+    id: 'Admin',
     children: [
-      { id: 'Authentication', icon: <PeopleIcon />, path: '/authentication' },
-      { id: 'Database', icon: <StorageIcon />, path: '/database' },
-      { id: 'Storage', icon: <StorageIcon />, path: '/storage' },
-      { id: 'Hosting', icon: <HomeIcon />, path: '/hosting' },
-      { id: 'Functions', icon: <SettingsIcon />, path: '/functions' },
-      { id: 'ML Kit', icon: <BarChartIcon />, path: '/ml-kit' },
+      { id: 'User Management', icon: <PeopleIcon />, path: '/authentication' },
     ],
   },
 ];
@@ -71,7 +67,7 @@ const Navigator: React.FC<NavigatorProps> = ({ PaperProps, selectedMenu = 'Dashb
     <Drawer variant="permanent" PaperProps={PaperProps}>
       <List disablePadding>
         <ListItem sx={{ fontSize: 22, color: '#fff', py: 3, px: 3 }}>
-          Paperbase
+          Portfolio
         </ListItem>
         {categories.map(({ id, children }) => (
           <Box key={id} sx={{ bgcolor: '#101F33' }}>

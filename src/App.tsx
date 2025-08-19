@@ -8,6 +8,10 @@ import Authentication from './components/Authentication';
 import Login from './components/Login';
 import Register from './components/Register';
 import Welcome from './components/Welcome';
+import Home from './components/Home';
+import AboutMe from './components/AboutMe';
+import Projects from './components/Projects';
+import Contact from './components/Contact';
 import { TokenManager } from './services/api';
 
 const drawerWidth = 256;
@@ -29,45 +33,30 @@ const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
 
 function App() {
   const [mobileOpen, setMobileOpen] = React.useState(false);
-  const [selectedMenu, setSelectedMenu] = React.useState('Dashboard');
+  const [selectedMenu, setSelectedMenu] = React.useState('Home');
   const location = useLocation();
 
   // URL 경로에 따라 selectedMenu 상태 업데이트
   useEffect(() => {
     const path = location.pathname;
     switch (path) {
-      case '/dashboard':
-        setSelectedMenu('Dashboard');
+      case '/home':
+        setSelectedMenu('Home');
+        break;
+      case '/about':
+        setSelectedMenu('About Me');
+        break;
+      case '/projects':
+        setSelectedMenu('Projects');
+        break;
+      case '/contact':
+        setSelectedMenu('Contact');
         break;
       case '/authentication':
-        setSelectedMenu('Authentication');
-        break;
-      case '/analytics':
-        setSelectedMenu('Analytics');
-        break;
-      case '/performance':
-        setSelectedMenu('Performance');
-        break;
-      case '/test-lab':
-        setSelectedMenu('Test Lab');
-        break;
-      case '/database':
-        setSelectedMenu('Database');
-        break;
-      case '/storage':
-        setSelectedMenu('Storage');
-        break;
-      case '/hosting':
-        setSelectedMenu('Hosting');
-        break;
-      case '/functions':
-        setSelectedMenu('Functions');
-        break;
-      case '/ml-kit':
-        setSelectedMenu('ML Kit');
+        setSelectedMenu('User Management');
         break;
       default:
-        setSelectedMenu('Dashboard');
+        setSelectedMenu('Home');
     }
   }, [location.pathname]);
 
@@ -111,9 +100,24 @@ function App() {
           }}
         >
           <Routes>
-            <Route path="/dashboard" element={
+            <Route path="/home" element={
               <ProtectedRoute>
-                <Content />
+                <Home />
+              </ProtectedRoute>
+            } />
+            <Route path="/about" element={
+              <ProtectedRoute>
+                <AboutMe />
+              </ProtectedRoute>
+            } />
+            <Route path="/projects" element={
+              <ProtectedRoute>
+                <Projects />
+              </ProtectedRoute>
+            } />
+            <Route path="/contact" element={
+              <ProtectedRoute>
+                <Contact />
               </ProtectedRoute>
             } />
             <Route path="/authentication" element={
@@ -121,46 +125,8 @@ function App() {
                 <Authentication />
               </ProtectedRoute>
             } />
-            <Route path="/analytics" element={
-              <ProtectedRoute>
-                <div>Analytics 페이지 (준비 중)</div>
-              </ProtectedRoute>
-            } />
-            <Route path="/performance" element={
-              <ProtectedRoute>
-                <div>Performance 페이지 (준비 중)</div>
-              </ProtectedRoute>
-            } />
-            <Route path="/test-lab" element={
-              <ProtectedRoute>
-                <div>Test Lab 페이지 (준비 중)</div>
-              </ProtectedRoute>
-            } />
-            <Route path="/database" element={
-              <ProtectedRoute>
-                <div>Database 페이지 (준비 중)</div>
-              </ProtectedRoute>
-            } />
-            <Route path="/storage" element={
-              <ProtectedRoute>
-                <div>Storage 페이지 (준비 중)</div>
-              </ProtectedRoute>
-            } />
-            <Route path="/hosting" element={
-              <ProtectedRoute>
-                <div>Hosting 페이지 (준비 중)</div>
-              </ProtectedRoute>
-            } />
-            <Route path="/functions" element={
-              <ProtectedRoute>
-                <div>Functions 페이지 (준비 중)</div>
-              </ProtectedRoute>
-            } />
-            <Route path="/ml-kit" element={
-              <ProtectedRoute>
-                <div>ML Kit 페이지 (준비 중)</div>
-              </ProtectedRoute>
-            } />
+            {/* 기본 경로를 /home으로 리다이렉트 */}
+            <Route path="/dashboard" element={<Navigate to="/home" replace />} />
           </Routes>
         </Box>
       </Box>

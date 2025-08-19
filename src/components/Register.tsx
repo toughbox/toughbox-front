@@ -127,12 +127,15 @@ const Register: React.FC = () => {
             </Typography>
           </Box>
 
-          <Box sx={{ display: 'flex', alignItems: 'center', mb: 3, mt: 2 }}>
-            <Avatar sx={{ bgcolor: 'secondary.main', mr: 2 }}>
-              <PersonAddIcon />
+          <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', mb: 3, mt: 2 }}>
+            <Avatar sx={{ bgcolor: 'secondary.main', width: 56, height: 56, mb: 2 }}>
+              <PersonAddIcon sx={{ fontSize: 28 }} />
             </Avatar>
-            <Typography variant="h4" component="h1">
-              회원가입
+            <Typography variant="h4" component="h1" sx={{ fontWeight: 600 }}>
+              포트폴리오 가입
+            </Typography>
+            <Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>
+              개발자 포트폴리오에 접근할 계정을 생성하세요
             </Typography>
           </Box>
 
