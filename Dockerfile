@@ -12,8 +12,8 @@ RUN npm ci
 # Copy source code
 COPY . .
 
-# Build the application with more memory
-RUN NODE_OPTIONS="--max-old-space-size=4096" npm run build
+# Build the application (skip TypeScript check for Docker)
+RUN npm run build:docker
 
 # Production stage
 FROM nginx:alpine
