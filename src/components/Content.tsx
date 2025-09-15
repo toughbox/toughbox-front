@@ -120,11 +120,39 @@ const Content: React.FC = () => {
                   <Typography variant="h5">
                     78%
                   </Typography>
-                  <LinearProgress 
-                    variant="determinate" 
-                    value={78} 
-                    sx={{ mt: 1, width: '100%' }}
-                  />
+                  <Box sx={{ position: 'relative', mt: 1 }}>
+                    <LinearProgress 
+                      variant="determinate" 
+                      value={78} 
+                      sx={{ 
+                        height: 12,
+                        borderRadius: 6,
+                        backgroundColor: 'rgba(0,0,0,0.1)',
+                        boxShadow: 'inset 0 1px 3px rgba(0,0,0,0.1)',
+                        '& .MuiLinearProgress-bar': {
+                          borderRadius: 6,
+                          background: 'linear-gradient(90deg, #ff9800 0%, #ffc107 50%, #ff9800 100%)',
+                          boxShadow: '0 0 10px rgba(255, 152, 0, 0.4)',
+                        },
+                      }}
+                    />
+                    <Typography
+                      variant="caption"
+                      sx={{
+                        position: 'absolute',
+                        top: '50%',
+                        left: '50%',
+                        transform: 'translate(-50%, -50%)',
+                        color: 'white',
+                        fontWeight: 'bold',
+                        fontSize: '9px',
+                        textShadow: '0 1px 2px rgba(0,0,0,0.7)',
+                        pointerEvents: 'none',
+                      }}
+                    >
+                      78%
+                    </Typography>
+                  </Box>
                 </Box>
               </Box>
             </CardContent>
@@ -192,34 +220,122 @@ const Content: React.FC = () => {
                 시스템 상태
               </Typography>
               <Box sx={{ mt: 2 }}>
-                <Typography variant="body2" sx={{ mb: 1 }}>
-                  API 서버
-                </Typography>
-                <LinearProgress 
-                  variant="determinate" 
-                  value={95} 
-                  color="success"
-                  sx={{ mb: 2 }}
-                />
+                <Box sx={{ mb: 2 }}>
+                  <Typography variant="body2" sx={{ mb: 1 }}>
+                    API 서버
+                  </Typography>
+                  <Box sx={{ position: 'relative' }}>
+                    <LinearProgress 
+                      variant="determinate" 
+                      value={95} 
+                      sx={{ 
+                        height: 10,
+                        borderRadius: 5,
+                        backgroundColor: 'rgba(0,0,0,0.1)',
+                        boxShadow: 'inset 0 1px 2px rgba(0,0,0,0.1)',
+                        '& .MuiLinearProgress-bar': {
+                          borderRadius: 5,
+                          background: 'linear-gradient(90deg, #4caf50 0%, #8bc34a 50%, #4caf50 100%)',
+                          boxShadow: '0 0 8px rgba(76, 175, 80, 0.5)',
+                        },
+                      }}
+                    />
+                    <Typography
+                      variant="caption"
+                      sx={{
+                        position: 'absolute',
+                        top: '50%',
+                        left: '50%',
+                        transform: 'translate(-50%, -50%)',
+                        color: 'white',
+                        fontWeight: 'bold',
+                        fontSize: '8px',
+                        textShadow: '0 1px 2px rgba(0,0,0,0.7)',
+                        pointerEvents: 'none',
+                      }}
+                    >
+                      95%
+                    </Typography>
+                  </Box>
+                </Box>
                 
-                <Typography variant="body2" sx={{ mb: 1 }}>
-                  데이터베이스
-                </Typography>
-                <LinearProgress 
-                  variant="determinate" 
-                  value={82} 
-                  color="warning"
-                  sx={{ mb: 2 }}
-                />
+                <Box sx={{ mb: 2 }}>
+                  <Typography variant="body2" sx={{ mb: 1 }}>
+                    데이터베이스
+                  </Typography>
+                  <Box sx={{ position: 'relative' }}>
+                    <LinearProgress 
+                      variant="determinate" 
+                      value={82} 
+                      sx={{ 
+                        height: 10,
+                        borderRadius: 5,
+                        backgroundColor: 'rgba(0,0,0,0.1)',
+                        boxShadow: 'inset 0 1px 2px rgba(0,0,0,0.1)',
+                        '& .MuiLinearProgress-bar': {
+                          borderRadius: 5,
+                          background: 'linear-gradient(90deg, #ff9800 0%, #ffc107 50%, #ff9800 100%)',
+                          boxShadow: '0 0 8px rgba(255, 152, 0, 0.5)',
+                        },
+                      }}
+                    />
+                    <Typography
+                      variant="caption"
+                      sx={{
+                        position: 'absolute',
+                        top: '50%',
+                        left: '50%',
+                        transform: 'translate(-50%, -50%)',
+                        color: 'white',
+                        fontWeight: 'bold',
+                        fontSize: '8px',
+                        textShadow: '0 1px 2px rgba(0,0,0,0.7)',
+                        pointerEvents: 'none',
+                      }}
+                    >
+                      82%
+                    </Typography>
+                  </Box>
+                </Box>
                 
-                <Typography variant="body2" sx={{ mb: 1 }}>
-                  파일 저장소
-                </Typography>
-                <LinearProgress 
-                  variant="determinate" 
-                  value={67} 
-                  color="primary"
-                />
+                <Box>
+                  <Typography variant="body2" sx={{ mb: 1 }}>
+                    파일 저장소
+                  </Typography>
+                  <Box sx={{ position: 'relative' }}>
+                    <LinearProgress 
+                      variant="determinate" 
+                      value={67} 
+                      sx={{ 
+                        height: 10,
+                        borderRadius: 5,
+                        backgroundColor: 'rgba(0,0,0,0.1)',
+                        boxShadow: 'inset 0 1px 2px rgba(0,0,0,0.1)',
+                        '& .MuiLinearProgress-bar': {
+                          borderRadius: 5,
+                          background: 'linear-gradient(90deg, #2196f3 0%, #21cbf3 50%, #2196f3 100%)',
+                          boxShadow: '0 0 8px rgba(33, 150, 243, 0.5)',
+                        },
+                      }}
+                    />
+                    <Typography
+                      variant="caption"
+                      sx={{
+                        position: 'absolute',
+                        top: '50%',
+                        left: '50%',
+                        transform: 'translate(-50%, -50%)',
+                        color: 'white',
+                        fontWeight: 'bold',
+                        fontSize: '8px',
+                        textShadow: '0 1px 2px rgba(0,0,0,0.7)',
+                        pointerEvents: 'none',
+                      }}
+                    >
+                      67%
+                    </Typography>
+                  </Box>
+                </Box>
               </Box>
             </Paper>
           </Box>
