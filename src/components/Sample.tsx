@@ -14,6 +14,8 @@ import CustomProgressBar from './CustomProgressBar';
 import BinaryProgress from './BinaryProgress';
 
 const Sample: React.FC = () => {
+  const MAX_VALUE = 257; // 목표 값 상수
+  
   const [progress, setProgress] = useState(0);
   const [currentValue, setCurrentValue] = useState(1);
   const [isRunning, setIsRunning] = useState(false);
@@ -25,11 +27,11 @@ const Sample: React.FC = () => {
     setIsRunning(true);
     const id = setInterval(() => {
       setCurrentValue(prev => {
-        if (prev >= 100) {
+        if (prev >= MAX_VALUE) {
           setIsRunning(false);
           clearInterval(id);
           intervalIdRef.current = null;
-          return 100;
+          return MAX_VALUE;
         }
         return prev + 1;
       });
@@ -53,7 +55,7 @@ const Sample: React.FC = () => {
   };
 
   useEffect(() => {
-    setProgress((currentValue / 100) * 100);
+    setProgress((currentValue / MAX_VALUE) * 100);
   }, [currentValue]);
 
   // 컴포넌트 언마운트 시 인터벌 정리
@@ -109,7 +111,7 @@ const Sample: React.FC = () => {
                 </Button>
               </Box>
               <Typography variant="body2" color="text.secondary">
-                상태: {isRunning ? '진행 중' : currentValue === 100 ? '완료' : '대기 중'}
+                상태: {isRunning ? '진행 중' : currentValue === MAX_VALUE ? '완료' : '대기 중'}
               </Typography>
             </CardContent>
           </Card>
@@ -124,7 +126,7 @@ const Sample: React.FC = () => {
               </Typography>
               <Box sx={{ mb: 2 }}>
                 <Typography variant="body1" color="text.secondary">
-                  현재 값: {currentValue} / 100
+                  현재 값: {currentValue} / {MAX_VALUE}
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
                   진행률: {progress.toFixed(1)}%
@@ -206,7 +208,7 @@ const Sample: React.FC = () => {
                     목표 값
                   </Typography>
                   <Typography variant="h6" color="secondary">
-                    100
+                    {MAX_VALUE}
                   </Typography>
                 </Paper>
               </Box>
@@ -226,7 +228,7 @@ const Sample: React.FC = () => {
                     남은 값
                   </Typography>
                   <Typography variant="h6" color="success.main">
-                    {100 - currentValue}
+                    {MAX_VALUE - currentValue}
                   </Typography>
                 </Paper>
                 <Paper sx={{ p: 2, backgroundColor: '#fff3e0' }}>
@@ -234,7 +236,7 @@ const Sample: React.FC = () => {
                     완료 상태
                   </Typography>
                   <Typography variant="h6" color="warning.main">
-                    {currentValue === 100 ? '완료' : '진행 중'}
+                    {currentValue === MAX_VALUE ? '완료' : '진행 중'}
                   </Typography>
                 </Paper>
                 <Paper sx={{ p: 2, backgroundColor: '#fce4ec' }}>
@@ -242,7 +244,7 @@ const Sample: React.FC = () => {
                     예상 완료 시간
                   </Typography>
                   <Typography variant="h6" color="error.main">
-                    {currentValue === 100 ? '완료됨' : `${((100 - currentValue) * 0.1).toFixed(1)}초`}
+                    {currentValue === MAX_VALUE ? '완료됨' : `${((MAX_VALUE - currentValue) * 0.1).toFixed(1)}초`}
                   </Typography>
                 </Paper>
               </Box>
@@ -307,13 +309,13 @@ const Sample: React.FC = () => {
                         boxShadow: 'inset 0 1px 3px rgba(0,0,0,0.1)',
                         '& .MuiLinearProgress-bar': {
                           borderRadius: 8,
-                          background: currentValue === 100 
+                          background: currentValue === MAX_VALUE 
                             ? 'linear-gradient(90deg, #4caf50 0%, #8bc34a 50%, #4caf50 100%)'
                             : 'linear-gradient(90deg, #ff9800 0%, #ffc107 50%, #ff9800 100%)',
-                          boxShadow: currentValue === 100 
+                          boxShadow: currentValue === MAX_VALUE 
                             ? '0 0 15px rgba(76, 175, 80, 0.6)'
                             : '0 0 15px rgba(255, 152, 0, 0.6)',
-                          animation: currentValue === 100 ? 'glow 2s infinite' : 'none',
+                          animation: currentValue === MAX_VALUE ? 'glow 2s infinite' : 'none',
                         },
                       }}
                     />
@@ -353,7 +355,7 @@ const Sample: React.FC = () => {
                   <Box sx={{ mt: 2 }}>
                     <BinaryProgress
                       value={currentValue}
-                      max={100}
+                      max={MAX_VALUE}
                       width={300}
                       height={30}
                       label="바이너리 코드 프로그레스바"
