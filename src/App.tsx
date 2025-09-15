@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { Routes, Route, useLocation, Navigate } from 'react-router-dom';
 import { Box } from '@mui/material';
 import Navigator from './components/Navigator';
-import Header from './components/Header';
 import Content from './components/Content';
 import Authentication from './components/Authentication';
 import Login from './components/Login';
@@ -12,6 +11,7 @@ import Home from './components/Home';
 import AboutMe from './components/AboutMe';
 import Projects from './components/Projects';
 import Contact from './components/Contact';
+import Sample from './components/Sample';
 import { TokenManager } from './services/api';
 
 const drawerWidth = 256;
@@ -32,7 +32,6 @@ const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
 };
 
 function App() {
-  const [mobileOpen, setMobileOpen] = React.useState(false);
   const [selectedMenu, setSelectedMenu] = React.useState('Home');
   const location = useLocation();
 
@@ -52,6 +51,9 @@ function App() {
       case '/contact':
         setSelectedMenu('Contact');
         break;
+      case '/sample':
+        setSelectedMenu('Sample');
+        break;
       case '/authentication':
         setSelectedMenu('User Management');
         break;
@@ -59,10 +61,6 @@ function App() {
         setSelectedMenu('Home');
     }
   }, [location.pathname]);
-
-  const handleDrawerToggle = () => {
-    setMobileOpen(!mobileOpen);
-  };
 
   // 로그인/회원가입/환영 페이지에서는 네비게이션과 헤더를 숨김
   const isAuthPage = ['/login', '/register', '/'].includes(location.pathname);
@@ -89,7 +87,6 @@ function App() {
         />
       </Box>
       <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
-        <Header onDrawerToggle={handleDrawerToggle} selectedMenu={selectedMenu} />
         <Box
           component="main"
           sx={{ 
@@ -118,6 +115,11 @@ function App() {
             <Route path="/contact" element={
               <ProtectedRoute>
                 <Contact />
+              </ProtectedRoute>
+            } />
+            <Route path="/sample" element={
+              <ProtectedRoute>
+                <Sample />
               </ProtectedRoute>
             } />
             <Route path="/authentication" element={

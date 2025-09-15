@@ -20,6 +20,7 @@ import {
   Description as ResumeIcon,
   People as PeopleIcon,
   Logout as LogoutIcon,
+  Science as ScienceIcon,
 } from '@mui/icons-material';
 import { authAPI } from '../services/api';
 
@@ -31,6 +32,12 @@ const categories = [
       { id: 'About Me', icon: <PersonIcon />, path: '/about' },
       { id: 'Projects', icon: <WorkIcon />, path: '/projects' },
       { id: 'Contact', icon: <ContactIcon />, path: '/contact' },
+    ],
+  },
+  {
+    id: 'Tools',
+    children: [
+      { id: 'Sample', icon: <ScienceIcon />, path: '/sample' },
     ],
   },
   {
