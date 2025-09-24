@@ -25,13 +25,15 @@ const Home: React.FC = () => {
     'Java',
     'Spring Boot',
     'Spring Security',
-    'JPA/Hibernate',
+    'JPA',
     'MySQL',
+    'Oracle',
     'Redis',
     'Docker',
-    'AWS',
-    'Kubernetes',
-    'Jenkins',
+    'JQuery',
+    'javascript',
+    'MSA',
+    'Kafka',
   ];
 
   return (
@@ -46,33 +48,20 @@ const Home: React.FC = () => {
           mb: 6,
         }}
       >
-        <Avatar
-          sx={{
-            width: 150,
-            height: 150,
-            mb: 3,
-            bgcolor: 'primary.main',
-            fontSize: '3rem',
-          }}
-        >
-          개발자
-        </Avatar>
         
         <Typography variant="h2" component="h1" gutterBottom sx={{ fontWeight: 700 }}>
           안녕하세요! 👋
         </Typography>
         
-        <Typography variant="h4" component="h2" sx={{ mb: 2, color: 'text.secondary' }}>
-          Backend Developer | Java | Spring | Cloud
-        </Typography>
-        
-        <Typography variant="h6" sx={{ mb: 4, maxWidth: 600, color: 'text.secondary' }}>
+        <Typography variant="h6" sx={{ mb: 0, maxWidth: 1200, color: 'text.secondary' }}>
           확장 가능하고 안정적인 백엔드 시스템을 구축하는 것을 좋아하는 개발자입니다.
+        </Typography>
+        <Typography variant="h6" sx={{ mb: 4, maxWidth: 1200, color: 'text.secondary' }}>
           Clean Code와 효율적인 아키텍처 설계에 관심이 많습니다.
         </Typography>
 
         {/* Contact Buttons */}
-        <Box sx={{ display: 'flex', gap: 2, flexWrap: 'wrap', justifyContent: 'center' }}>
+        {/* <Box sx={{ display: 'flex', gap: 2, flexWrap: 'wrap', justifyContent: 'center' }}>
           <Button
             variant="contained"
             size="large"
@@ -112,7 +101,7 @@ const Home: React.FC = () => {
           >
             이력서
           </Button>
-        </Box>
+        </Box> */}
       </Box>
 
       {/* Quick Tech Stack */}
@@ -154,7 +143,7 @@ const Home: React.FC = () => {
           >
             <Code sx={{ fontSize: 48, color: 'primary.main', mb: 2 }} />
             <Typography variant="h4" sx={{ fontWeight: 700, mb: 1 }}>
-              3+
+              15+
             </Typography>
             <Typography variant="body1" color="text.secondary">
               년간 개발 경험
@@ -176,7 +165,7 @@ const Home: React.FC = () => {
           >
             <Storage sx={{ fontSize: 48, color: 'secondary.main', mb: 2 }} />
             <Typography variant="h4" sx={{ fontWeight: 700, mb: 1 }}>
-              10+
+              20+
             </Typography>
             <Typography variant="body1" color="text.secondary">
               완료한 프로젝트
@@ -184,7 +173,7 @@ const Home: React.FC = () => {
           </Paper>
         </Grid>
         
-        <Grid item xs={12} md={4}>
+        {/* <Grid item xs={12} md={4}>
           <Paper
             sx={{
               p: 3,
@@ -204,7 +193,7 @@ const Home: React.FC = () => {
               클라우드 프로젝트
             </Typography>
           </Paper>
-        </Grid>
+        </Grid> */}
       </Grid>
     </Container>
   );
