@@ -77,7 +77,7 @@ const Welcome: React.FC = () => {
                   fontSize: { xs: '1.2rem', md: '1.5rem' },
                 }}
               >
-                Java | Spring | Cloud | Architecture
+                Java | Spring | Architecture
               </Typography>
               <Typography
                 variant="h6"
@@ -112,7 +112,7 @@ const Welcome: React.FC = () => {
                 >
                   GitHub
                 </Button>
-                <Button
+                {/* <Button
                   variant="outlined"
                   startIcon={<LinkedIn />}
                   href="https://linkedin.com/in/yourprofile"
@@ -127,7 +127,7 @@ const Welcome: React.FC = () => {
                   }}
                 >
                   LinkedIn
-                </Button>
+                </Button> */}
               </Box>
             </Box>
 

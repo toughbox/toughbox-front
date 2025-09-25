@@ -36,32 +36,32 @@ const Contact: React.FC = () => {
 
   const contactInfo = [
     {
-      icon: <Email />,
-      title: '이메일',
-      value: 'your.email@example.com',
-      link: 'mailto:your.email@example.com',
-      color: 'primary.main',
-    },
-    {
-      icon: <GitHub />,
-      title: 'GitHub',
-      value: 'github.com/yourusername',
-      link: 'https://github.com/yourusername',
-      color: '#333',
-    },
-    {
-      icon: <LinkedIn />,
-      title: 'LinkedIn',
-      value: 'linkedin.com/in/yourprofile',
-      link: 'https://linkedin.com/in/yourprofile',
-      color: '#0077b5',
-    },
-    {
       icon: <Phone />,
       title: '전화번호',
       value: '+82 10-1234-5678',
       link: 'tel:+821012345678',
       color: 'success.main',
+    },
+    {
+      icon: <Email />,
+      title: '이메일',
+      value: 'tough@kakao.com',
+      link: 'mailto:tough@kakao.com',
+      color: 'primary.main',
+    },
+    {
+      icon: <GitHub />,
+      title: 'GitHub',
+      value: 'github.com/toughbox',
+      link: 'https://github.com/toughbox?tab=repositories',
+      color: '#333',
+    },
+    /* {
+      icon: <LinkedIn />,
+      title: 'LinkedIn',
+      value: 'linkedin.com/in/yourprofile',
+      link: 'https://linkedin.com/in/yourprofile',
+      color: '#0077b5',
     },
     {
       icon: <LocationOn />,
@@ -76,7 +76,7 @@ const Contact: React.FC = () => {
       value: '개발자와 대화하기',
       link: 'https://open.kakao.com/o/your-openchat-link',
       color: '#fee500',
-    },
+    }, */
   ];
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -110,9 +110,9 @@ const Contact: React.FC = () => {
         Contact
       </Typography>
       
-      <Typography variant="h6" sx={{ textAlign: 'center', mb: 6, color: 'text.secondary' }}>
+      {/* <Typography variant="h6" sx={{ textAlign: 'center', mb: 6, color: 'text.secondary' }}>
         프로젝트 제안이나 협업 문의는 언제든 환영합니다! 🤝
-      </Typography>
+      </Typography> */}
 
       <Grid container spacing={4}>
         {/* Contact Information */}
@@ -178,7 +178,7 @@ const Contact: React.FC = () => {
         </Grid>
 
         {/* Contact Form */}
-        <Grid item xs={12} md={6}>
+        {/* <Grid item xs={12} md={6}>
           <Paper sx={{ p: 4 }}>
             <Typography variant="h5" gutterBottom sx={{ mb: 3 }}>
               💌 메시지 보내기
@@ -258,7 +258,7 @@ const Contact: React.FC = () => {
               </Typography>
             </Box>
           </Paper>
-        </Grid>
+        </Grid> */}
       </Grid>
 
       {/* Resume Download Section */}

@@ -25,13 +25,17 @@ const Home: React.FC = () => {
     'Java',
     'Spring Boot',
     'Spring Security',
-    'JPA/Hibernate',
+    'JPA',
+    'JWT',
+    'Git',
+    'REST API',
+    'RDB',
     'MySQL',
-    'Redis',
-    'Docker',
-    'AWS',
-    'Kubernetes',
-    'Jenkins',
+    'Kafka',
+    'JQuery',
+    'Javascript',
+    'HTML',
+    'MSA'
   ];
 
   return (
@@ -46,7 +50,7 @@ const Home: React.FC = () => {
           mb: 6,
         }}
       >
-        <Avatar
+        {/* <Avatar
           sx={{
             width: 150,
             height: 150,
@@ -56,14 +60,14 @@ const Home: React.FC = () => {
           }}
         >
           개발자
-        </Avatar>
+        </Avatar> */}
         
         <Typography variant="h2" component="h1" gutterBottom sx={{ fontWeight: 700 }}>
           안녕하세요! 👋
         </Typography>
         
         <Typography variant="h4" component="h2" sx={{ mb: 2, color: 'text.secondary' }}>
-          Backend Developer | Java | Spring | Cloud
+          Backend Developer | Java | Spring | Architecture
         </Typography>
         
         <Typography variant="h6" sx={{ mb: 4, maxWidth: 600, color: 'text.secondary' }}>
@@ -154,7 +158,7 @@ const Home: React.FC = () => {
           >
             <Code sx={{ fontSize: 48, color: 'primary.main', mb: 2 }} />
             <Typography variant="h4" sx={{ fontWeight: 700, mb: 1 }}>
-              3+
+              15+
             </Typography>
             <Typography variant="body1" color="text.secondary">
               년간 개발 경험
@@ -176,7 +180,7 @@ const Home: React.FC = () => {
           >
             <Storage sx={{ fontSize: 48, color: 'secondary.main', mb: 2 }} />
             <Typography variant="h4" sx={{ fontWeight: 700, mb: 1 }}>
-              10+
+              20+
             </Typography>
             <Typography variant="body1" color="text.secondary">
               완료한 프로젝트
@@ -184,7 +188,7 @@ const Home: React.FC = () => {
           </Paper>
         </Grid>
         
-        <Grid item xs={12} md={4}>
+        {/* <Grid item xs={12} md={4}>
           <Paper
             sx={{
               p: 3,
@@ -204,7 +208,7 @@ const Home: React.FC = () => {
               클라우드 프로젝트
             </Typography>
           </Paper>
-        </Grid>
+        </Grid> */}
       </Grid>
     </Container>
   );

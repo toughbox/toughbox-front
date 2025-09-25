@@ -23,11 +23,12 @@ import {
   Group,
   Analytics,
   Security,
+  DocumentScanner,
 } from '@mui/icons-material';
 
 const Projects: React.FC = () => {
   const projects = [
-    {
+    /* {
       id: 1,
       title: 'E-Commerce 플랫폼',
       description: '대용량 트래픽을 처리할 수 있는 온라인 쇼핑몰 백엔드 시스템',
@@ -132,6 +133,55 @@ public ChatMessage sendMessage(ChatMessage message) {
       githubUrl: 'https://github.com/yourusername/team-collaboration',
       icon: <Group />,
       color: 'warning.main',
+    }, */
+    {
+      id: 5,
+      title: '포트폴리오',
+      description: '개발 이력을 남기기 위한 포트폴리오 페이지',
+      detailedDescription: `
+        - 우분투 환경 구축
+        - Spring Boot 로 FrontEnd-BackEnd-AuthService-ApiGateway 구성
+        - Github Actions 를 통한 CI/CD
+        - Github Container Registry 를 이용하여 도커 이미지 보관
+        - Spring Security로 jwt 인증 구현
+      `,
+      technologies: ['Ubuntu', 'Docker', 'Spring Boot', 'Spring Security', 'MuSQL', 'GitHub', 'GitHub Actions', 'Minio'],
+      architecture: 'Frontend Server → Auth Service → Api Gateway → Backend Server → Database + Storage Service',
+      codeSnippet: `@Service
+@RequiredArgsConstructor
+public class UserService {
+
+    private final AuthRepository authRepository;
+    private final EncryptService encryptService;
+    private final JwtUtil jwtUtil;
+    private final OtpService otpService;
+
+    public User createUser(String userId, String password) {
+        return authRepository.createUser(new User(userId, password));
+    }
+
+    public LoginResponse login(String userId, String password) {
+        User user = authRepository.getUserByUserId(userId);
+
+        if (ObjectUtils.isEmpty(user.getUserId()))
+            return new LoginResponse();
+
+        if (encryptService.matches(password, user.getPassword())) {
+            String accessToken = jwtUtil.generateToken(user.getUserId());
+            String refreshToken = jwtUtil.generateRefreshToken(user.getUserId());
+            UserResponse userResponse = new UserResponse(String.valueOf(user.getId()), user.getUserId());
+            LoginResponse loginResponse = new LoginResponse(accessToken, refreshToken, userResponse);
+
+            return loginResponse;
+        }
+
+        throw new RuntimeException("로그인 중 오류가 발생하였습니다.");
+    }
+}`,
+      /* demoUrl: 'http://toughbox.iptime.org:8090/', */
+      githubUrl: 'https://github.com/toughbox?tab=repositories',
+      icon: <DocumentScanner />,
+      color: 'warning.main',
     },
   ];
 
@@ -142,7 +192,7 @@ public ChatMessage sendMessage(ChatMessage message) {
       </Typography>
 
       <Typography variant="h6" sx={{ textAlign: 'center', mb: 6, color: 'text.secondary' }}>
-        실제 비즈니스 문제를 해결한 프로젝트들을 소개합니다
+        프로젝트를 소개합니다
       </Typography>
 
       <Grid container spacing={4}>
@@ -251,7 +301,7 @@ public ChatMessage sendMessage(ChatMessage message) {
                 {/* Actions */}
                 <CardActions sx={{ justifyContent: 'space-between', px: 0 }}>
                   <Box>
-                    <Button
+                    {/* <Button
                       variant="contained"
                       startIcon={<Launch />}
                       href={project.demoUrl}
@@ -259,7 +309,7 @@ public ChatMessage sendMessage(ChatMessage message) {
                       sx={{ mr: 2 }}
                     >
                       데모 보기
-                    </Button>
+                    </Button> */}
                     <Button
                       variant="outlined"
                       startIcon={<GitHub />}
@@ -282,17 +332,17 @@ public ChatMessage sendMessage(ChatMessage message) {
           🚀 더 많은 프로젝트
         </Typography>
         <Typography variant="body1" sx={{ mb: 2 }}>
-          GitHub에서 더 많은 프로젝트와 오픈소스 기여를 확인하실 수 있습니다.
+          GitHub에서 프로젝트를 확인하실 수 있습니다.
         </Typography>
         <Button
           variant="contained"
           color="secondary"
           startIcon={<GitHub />}
-          href="https://github.com/yourusername"
+          href="https://github.com/toughbox?tab=repositories"
           target="_blank"
           size="large"
         >
-          GitHub 프로필 보기
+          GitHub 저장소 보기
         </Button>
       </Paper>
     </Container>

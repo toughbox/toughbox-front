@@ -45,7 +45,7 @@ const AboutMe: React.FC = () => {
       description: '도메인 중심의 아키텍처 설계',
       icon: <Architecture />,
     },
-    {
+    /* {
       title: '대규모 트래픽 처리',
       description: '고성능 시스템 설계 및 최적화',
       icon: <Speed />,
@@ -54,7 +54,7 @@ const AboutMe: React.FC = () => {
       title: '테스트 주도 개발',
       description: '안정적인 소프트웨어 개발',
       icon: <BugReport />,
-    },
+    }, */
   ];
 
   const experiences = [
@@ -87,10 +87,10 @@ const AboutMe: React.FC = () => {
       {/* Introduction */}
       <Paper sx={{ p: 4, mb: 4 }}>
         <Typography variant="h5" gutterBottom>
-          👨‍💻 개발자 소개
+          👨‍💻 소개
         </Typography>
         <Typography variant="body1" sx={{ lineHeight: 1.8, mb: 2 }}>
-          안녕하세요! 3년차 백엔드 개발자입니다. 주로 Java와 Spring 생태계를 활용하여 
+          안녕하세요! 15년차 백엔드 개발자입니다. 주로 Java와 Spring 생태계를 활용하여 
           확장 가능하고 안정적인 서버 시스템을 구축하는 일을 하고 있습니다.
         </Typography>
         <Typography variant="body1" sx={{ lineHeight: 1.8, mb: 2 }}>
@@ -98,13 +98,13 @@ const AboutMe: React.FC = () => {
           적절한 기술적 해결책을 제시하는 것을 중요하게 생각합니다.
         </Typography>
         <Typography variant="body1" sx={{ lineHeight: 1.8 }}>
-          최근에는 클라우드 네이티브 아키텍처와 DevOps에 관심을 가지고 있으며, 
+          아키텍처와 DevOps에 관심을 가지고 있으며, 
           지속적인 학습을 통해 더 나은 개발자가 되기 위해 노력하고 있습니다.
         </Typography>
       </Paper>
 
       {/* Skills */}
-      <Paper sx={{ p: 4, mb: 4 }}>
+      {/* <Paper sx={{ p: 4, mb: 4 }}>
         <Typography variant="h5" gutterBottom sx={{ mb: 3 }}>
           🛠️ 기술 스택
         </Typography>
@@ -137,7 +137,7 @@ const AboutMe: React.FC = () => {
             </Grid>
           ))}
         </Grid>
-      </Paper>
+      </Paper> */}
 
       {/* Interests */}
       <Paper sx={{ p: 4, mb: 4 }}>
@@ -177,7 +177,7 @@ const AboutMe: React.FC = () => {
       </Paper>
 
       {/* Experience */}
-      <Paper sx={{ p: 4 }}>
+      {/* <Paper sx={{ p: 4 }}>
         <Typography variant="h5" gutterBottom sx={{ mb: 3 }}>
           💼 경력 사항
         </Typography>
@@ -215,7 +215,7 @@ const AboutMe: React.FC = () => {
             </Box>
           ))}
         </Box>
-      </Paper>
+      </Paper> */}
     </Container>
   );
 };
