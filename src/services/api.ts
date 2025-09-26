@@ -1,6 +1,7 @@
 import axios from 'axios';
 
-const API_BASE_URL = '/api';
+// 배포 환경에 맞는 API 기본 URL 설정
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://toughbox.iptime.org:8080/api';
 
 // JWT 토큰 관리 유틸리티
 export const TokenManager = {
