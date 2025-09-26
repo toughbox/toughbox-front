@@ -21,6 +21,7 @@ import {
   People as PeopleIcon,
   Logout as LogoutIcon,
   Science as ScienceIcon,
+  Architecture as ArchitectureIcon,
 } from '@mui/icons-material';
 import { authAPI } from '../services/api';
 
@@ -31,6 +32,7 @@ const categories = [
       { id: 'Home', icon: <HomeIcon />, path: '/home' },
       { id: 'About Me', icon: <PersonIcon />, path: '/about' },
       { id: 'Projects', icon: <WorkIcon />, path: '/projects' },
+      { id: 'Architecture', icon: <ArchitectureIcon />, path: '/architecture' },
       { id: 'Contact', icon: <ContactIcon />, path: '/contact' },
     ],
   },

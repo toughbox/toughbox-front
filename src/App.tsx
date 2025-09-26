@@ -12,6 +12,7 @@ import AboutMe from './components/AboutMe';
 import Projects from './components/Projects';
 import Contact from './components/Contact';
 import Sample from './components/Sample';
+import Architecture from './components/Architecture';
 import { TokenManager } from './services/api';
 
 const drawerWidth = 256;
@@ -47,6 +48,9 @@ function App() {
         break;
       case '/projects':
         setSelectedMenu('Projects');
+        break;
+      case '/architecture':
+        setSelectedMenu('Architecture');
         break;
       case '/contact':
         setSelectedMenu('Contact');
@@ -120,6 +124,11 @@ function App() {
             <Route path="/sample" element={
               <ProtectedRoute>
                 <Sample />
+              </ProtectedRoute>
+            } />
+            <Route path="/architecture" element={
+              <ProtectedRoute>
+                <Architecture />
               </ProtectedRoute>
             } />
             <Route path="/authentication" element={
