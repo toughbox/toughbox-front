@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 // 배포 환경에 맞는 API 기본 URL 설정
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || '/api';
 
 // JWT 토큰 관리 유틸리티
 export const TokenManager = {
@@ -172,39 +172,45 @@ apiClient.interceptors.response.use(
 export const authAPI = {
   // 회원가입
   register: (userId: string, password: string) => 
-    apiClient.post('/users', { userId, password }),
+    apiClient.post('/register', { userId, password }),
   
   // 로그인 (토큰 자동 저장)
   login: async (userId: string, password: string) => {
-    const response = await apiClient.post('/users/login', { userId, password });
-    
-    console.log('로그인 응답:', response.data);
-    
-    // 로그인 성공 시에만 토큰 저장
-    if (response.data.accessToken) {
-      console.log('accessToken 저장:', response.data.accessToken);
-      TokenManager.setToken(response.data.accessToken);
+    try {
+      console.log('로그인 시도:', { userId, password });
+      const response = await apiClient.post('/login', { userId, password });
       
-      if (response.data.refreshToken) {
-        console.log('refreshToken 저장:', response.data.refreshToken);
-        TokenManager.setRefreshToken(response.data.refreshToken);
+      console.log('로그인 응답 상태:', response.status);
+      console.log('로그인 응답:', response.data);
+      
+      // 로그인 성공 시에만 토큰 저장
+      if (response.data.accessToken) {
+        console.log('accessToken 저장:', response.data.accessToken);
+        TokenManager.setToken(response.data.accessToken);
+        
+        if (response.data.refreshToken) {
+          console.log('refreshToken 저장:', response.data.refreshToken);
+          TokenManager.setRefreshToken(response.data.refreshToken);
+        } else {
+          console.log('응답에 refreshToken이 없음');
+        }
+        
+        if (response.data.user) {
+          console.log('user 정보 저장:', response.data.user);
+          TokenManager.setUser(response.data.user);
+        } else {
+          console.log('응답에 user 정보가 없음');
+        }
       } else {
-        console.log('응답에 refreshToken이 없음');
+        console.log('응답에 accessToken이 없음 - 로그인 실패');
       }
       
-      if (response.data.user) {
-        console.log('user 정보 저장:', response.data.user);
-        TokenManager.setUser(response.data.user);
-      } else {
-        console.log('응답에 user 정보가 없음');
-      }
-    } else {
-      console.log('응답에 accessToken이 없음 - 로그인 실패');
-      // 토큰이 없으면 로그인 실패로 처리
-      //throw new Error('로그인에 실패했습니다. 아이디 또는 비밀번호를 확인해주세요.');
+      return response;
+    } catch (error: any) {
+      console.error('로그인 API 에러:', error.response ? error.response.data : error.message);
+      console.error('에러 상세:', error);
+      throw error;
     }
-    
-    return response;
   },
 
   // 로그아웃
@@ -221,10 +227,10 @@ export const authAPI = {
   // 토큰 갱신
   refreshToken: () => {
     const refreshToken = TokenManager.getRefreshToken();
-    return apiClient.post('/auth/refresh', { refreshToken });
+    return apiClient.post('/refresh', { refreshToken });
   },
 
-  // 사용자 목록 조회
+  // 사용자 목록 조회 (관리자 전용)
   getUsers: () => apiClient.get('/users'),
 };
 

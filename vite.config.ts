@@ -10,7 +10,6 @@ export default defineConfig({
     host: true,
     proxy: {
       '/api': {
-        //target: 'http://localhost:8080/auth',
         target: 'http://toughbox.iptime.org:8080/auth',
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, ''),
