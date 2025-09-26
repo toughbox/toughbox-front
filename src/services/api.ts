@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 // 배포 환경에 맞는 API 기본 URL 설정
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || '/api';
+const API_BASE_URL = '/api';
 
 // JWT 토큰 관리 유틸리티
 export const TokenManager = {
@@ -178,7 +178,7 @@ export const authAPI = {
   login: async (userId: string, password: string) => {
     try {
       console.log('로그인 시도:', { userId, password });
-      const response = await apiClient.post('/login', { userId, password });
+      const response = await apiClient.post('/users/login', { userId, password });
       
       console.log('로그인 응답 상태:', response.status);
       console.log('로그인 응답:', response.data);

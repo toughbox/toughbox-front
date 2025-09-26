@@ -11,6 +11,7 @@ export default defineConfig({
     proxy: {
       '/api': {
         target: 'http://toughbox.iptime.org:8080/auth',
+        //target: 'http://localhost:8080/auth',
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, ''),
       },
