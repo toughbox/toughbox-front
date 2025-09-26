@@ -172,7 +172,7 @@ apiClient.interceptors.response.use(
 export const authAPI = {
   // 회원가입
   register: (userId: string, password: string) => 
-    apiClient.post('/register', { userId, password }),
+    apiClient.post('/users', { userId, password }),
   
   // 로그인 (토큰 자동 저장)
   login: async (userId: string, password: string) => {
