@@ -79,5 +79,12 @@ jobs:
               -p 8090:8090 \
               ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
             
+            # 컨테이너 시작 확인
+            sleep 5
+            docker ps | grep toughbox-front
+            
+            # 헬스체크 (선택사항)
+            curl -f http://localhost:8090 || exit 1
+            
             # Clean up old images
             docker image prune -f 
