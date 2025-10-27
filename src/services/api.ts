@@ -177,7 +177,6 @@ export const authAPI = {
   // 로그인 (토큰 자동 저장)
   login: async (userId: string, password: string) => {
     try {
-      console.log('로그인 시도:', { userId, password });
       const response = await apiClient.post('/users/login', { userId, password });
       
       console.log('로그인 응답 상태:', response.status);
