@@ -262,7 +262,7 @@ const Contact: React.FC = () => {
       </Grid>
 
       {/* Resume Download Section */}
-      <Paper
+      {/* <Paper
         sx={{
           mt: 6,
           p: 4,
@@ -287,7 +287,7 @@ const Contact: React.FC = () => {
         >
           PDF 이력서 다운로드
         </Button>
-      </Paper>
+      </Paper> */}
 
       {/* Success Snackbar */}
       <Snackbar
